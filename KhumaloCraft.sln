@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KhumaloCraft", "KhumaloCraft\KhumaloCraft.csproj", "{34EDF86A-9855-4CA9-BBCD-80B44AAF8405}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KhumaloCraft", "KhumaloCraft\KhumaloCraft.csproj", "{34EDF86A-9855-4CA9-BBCD-80B44AAF8405}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary2", "ClassLibrary2\ClassLibrary2.csproj", "{BEBEC865-313A-48F7-8DB7-79970A32D395}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KhumaloFunctions", "KhumaloFunctions\KhumaloFunctions.csproj", "{68577189-503F-498F-82D0-AD9C8DA53D93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{34EDF86A-9855-4CA9-BBCD-80B44AAF8405}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34EDF86A-9855-4CA9-BBCD-80B44AAF8405}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34EDF86A-9855-4CA9-BBCD-80B44AAF8405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEBEC865-313A-48F7-8DB7-79970A32D395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEBEC865-313A-48F7-8DB7-79970A32D395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEBEC865-313A-48F7-8DB7-79970A32D395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEBEC865-313A-48F7-8DB7-79970A32D395}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68577189-503F-498F-82D0-AD9C8DA53D93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68577189-503F-498F-82D0-AD9C8DA53D93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68577189-503F-498F-82D0-AD9C8DA53D93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68577189-503F-498F-82D0-AD9C8DA53D93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

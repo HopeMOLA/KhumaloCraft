@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "KhumaloFunctions": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7183"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 32022,
+      "useSSL": false
+    }
+  }
+}

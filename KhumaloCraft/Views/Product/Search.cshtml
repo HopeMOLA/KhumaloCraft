@@ -1,0 +1,56 @@
+﻿@model KhumaloCraft.ViewModels.ProductSearchViewModel
+
+@{
+    ViewData["Title"] = "Search Products";
+}
+
+<h1>Search Products</h1>
+
+<form asp-action="Search" method="get">
+    <div class="form-group">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Search by name or category" value="@Model.SearchTerm" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+@if (Model.Results != null && Model.Results.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Availability</th>
+                <th>Picture</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.Results)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Category</td>
+                    <td>@product.Price</td>
+                    <td>
+                        @if (product.Availability)
+                        {
+                            <span class="text-success">Available</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger">Unavailable</span>
+                        }
+                    </td>
+                    <td>
+                        <img src="@product.PicUrl" alt="@product.Name" style="width: 100px;" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No products found.</p>
+}

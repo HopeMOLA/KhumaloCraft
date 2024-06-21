@@ -2,8 +2,6 @@
     ViewData["Title"] = "MYWORK";
 }
 
-<h1></h1>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,166 +15,247 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             background-image: url('background.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            background-color: #CD7F32; /* Beige */
-            color: #4d3319; /* Dark Brown */
+            background-color: #f5f5f5; /* Light Gray */
+            color: #333; /* Dark Gray */
         }
 
         header {
-            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
             padding: 20px 0;
+            text-align: center;
+            margin-bottom: 20px;
         }
+
+            header h1 {
+                font-size: 3em;
+                margin: 0;
+                letter-spacing: 2px;
+            }
 
         nav {
             text-align: center;
             padding: 10px 0;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
             nav a {
                 text-decoration: none;
-                color: #333; /* Dark gray color */
+                color: #4CAF50; /* Green */
                 padding: 0 20px;
+                font-weight: bold;
+                transition: color 0.3s ease;
             }
 
+                nav a:hover {
+                    color: #333; /* Dark Gray */
+                }
+
         section {
-            padding: 20px;
+            padding: 40px;
             margin: 20px auto;
             width: 80%;
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
             section h2 {
                 text-align: center;
-                margin-bottom: 20px;
+                margin-bottom: 40px;
+                font-size: 2.5em;
+                color: #4CAF50; /* Green */
+            }
+
+        .product-item {
+            margin-bottom: 20px;
+        }
+
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .product-card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+            .product-card img {
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+
+        .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .btn-custom {
+            background-color: #4CAF50; /* Green */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-custom:hover {
+                background-color: #45a049; /* Darker Green */
             }
 
         footer {
             text-align: center;
-            padding: 10px 0;
+            padding: 20px 0;
+            background-color: #4CAF50; /* Green */
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .notification {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            z-index: 1000;
         }
     </style>
-
-    <header>
-        <div class="container">
-            <form id="search-form">
-                <input type="text" id="search-input" placeholder="Search for crafts...">
-                <button type="submit">Search</button>
-            </form>
-        </div>
-    </header>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <h1>KhumaloCraft</h1>
+        </div>
+    </header>
 
-
+   
 
     <section id="products">
-        
-
-    </section>
-    
-    <div class="container">
-        <div class="row">
-            <!-- Database Products -->
-            <h2 class="text-center mb-4"> Database Products</h2>
+        <div class="container">
+       
             <div class="row">
                 @foreach (var product in Model)
                 {
                     <div class="col-md-4 mb-4 product-item" data-category="@product.Category">
                         <div class="card h-100 product-card">
-                            <img src="@Url.Content(product.PicUrl)" alt="@product.Name" />
+                            <img src="@Url.Content(product.PicUrl)" class="card-img-top" alt="@product.Name" />
                             <div class="card-body">
                                 <h5 class="card-title">@product.Name</h5>
                                 <p class="card-text">@product.Price</p>
-                                @if (
-
-                               product.Availability)
+                                @if (product.Availability)
                                 {
                                     <p class="card-text text-success">Available</p>
+                                    <button class="btn btn-custom add-to-cart-btn" data-product-id="@product.ProductID">Add to Cart</button>
                                 }
                                 else
                                 {
                                     <p class="card-text text-danger">Unavailable</p>
+                                    <button class="btn btn-secondary" disabled>Out of Stock</button>
                                 }
-                                <button class="btn btn-custom add-to-cart-btn" data-product-id="@product.ProductID">Add to Cart</button>
                             </div>
                         </div>
                     </div>
                 }
-            <h2>Featured Products</h2>
-            <!-- Product 1 -->
-            <div class="col-md-4 mb-4 product-item" data-category="Wisket">
-                <div class="card h-100 product-card">
-                    <img src="~/images/product1.png" class="card-img-top" alt="Product 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Basket </h5>
-                        <p class="card-text">The popular Wisket Basket, We have a variety of shapes, styles and colours to choose from.</p>
-                        <p class="card-text">R150.00</p>
+            </div>
+            <h2 class="text-center mb-4">Featured Products</h2>
+            <div class="row">
+                <!-- Product 1 -->
+                <div class="col-md-4 mb-4 product-item" data-category="Wisket">
+                    <div class="card h-100 product-card">
+                        <img src="~/images/product1.png" class="card-img-top" alt="Product 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Basket</h5>
+                            <p class="card-text">The popular Wisket Basket, We have a variety of shapes, styles and colours to choose from.</p>
+                            <p class="card-text">R150.00</p>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Product 2 -->
+                <div class="col-md-4 mb-4 product-item" data-category="Bowl">
+                    <div class="card h-100 product-card">
+                        <img src="~/images/product2.png" class="card-img-top" alt="Product 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Wooden Bowl</h5>
+                            <p class="card-text">A traditional bowl made from wood typically used for storing snacks and food.</p>
+                            <p class="card-text">R100.00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="col-md-4 mb-4 product-item" data-category="clay">
+                    <div class="card h-100 product-card">
+                        <img src="~/images/product3.png" class="card-img-top" alt="Product 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Clay vase</h5>
+                            <p class="card-text">These traditional clay or earthenware vessels come in many shapes and sizes and have been used around the world since prehistoric times</p>
+                            <p class="card-text">R270.00</p>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Product 2 -->
-            <div class="col-md-4 mb-4 product-item" data-category="Bowl">
-                <div class="card h-100 product-card">
-                    <img src="~/images/product2.png" class="card-img-top" alt="Product 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Wooden Bowl</h5>
-                        <p class="card-text">A traditional bowl made from wood typically used for storing snacks and food.</p>
-                        <p class="card-text">R100.00</p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Add to Cart button click event
+            $('.add-to-cart-btn').click(function () {
+                var productId = $(this).data('product-id');
 
-                    </div>
-                </div>
-            </div>
+                // Send AJAX request to add product to cart
+                $.ajax({
+                    url: '@Url.Action("AddToCart", "ShoppingCart")',
+                    type: 'POST',
+                    data: { productId: productId, quantity: 1 },
+                    success: function (response) {
+                        // Show notification
+                        $('.notification').text('Product added to cart!').fadeIn().delay(2000).fadeOut();
 
-            <!-- Product 3 -->
-            <div class="col-md-4 mb-4 product-item" data-category="clay">
-                <div class="card h-100 product-card">
-                    <img src="~/images/product3.png" class="card-img-top" alt="Product 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Clay vase</h5>
-                        <p class="card-text">These traditional clay or earthenware vessels come in many shapes and sizes and have been used around the world since prehistoric times</p>
-                        <p class="card-text">R270.00</p>
+                        // Redirect to shopping cart page after delay
+                        setTimeout(function () {
+                            window.location.href = '@Url.Action("Index", "ShoppingCart")';
+                        }, 2000);
+                    },
+                    error: function (xhr, status, error) {
+                        // Display error message if request fails
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 
+    <footer>
+        <p>Contact us: info@khumalocraft.com</p>
+    </footer>
 
-
-                    </div>
-                </div>
-            </div>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-                <script>
-                    $(document).ready(function () {
-                        // Add to Cart button click event
-                        $('.add-to-cart-btn').click(function () {
-                            var productId = $(this).data('product-id');
-
-                            // Send AJAX request to add product to cart
-                            $.ajax({
-                                url: '@Url.Action("AddToCart", "ShoppingCart")',
-                                type: 'POST',
-                                data: { productId: productId, quantity: 1 },
-                                success: function (response) {
-                                    // Redirect to shopping cart page
-                                    window.location.href = '@Url.Action("Index", "ShoppingCart")';
-                                },
-                                error: function (xhr, status, error) {
-                                    // Display error message if request fails
-                                    console.error(xhr.responseText);
-                                }
-                            });
-                        });
-                    });
-                </script>
-            
-
-
-        <footer>
-            <p>Contact us: info@khumalocraft.com</p>
-        </footer>
+    <!-- Notification -->
+    <div class="notification"></div>
 </body>
-</html>
